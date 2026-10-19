@@ -1,6 +1,6 @@
 {
   "name": "@rmosyazilim/chat-widget",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Otel uygulamaları için drop-in gerçek zamanlı chat widget altyapısı",
   "license": "MIT",
   "type": "module",

@@ -19,7 +19,11 @@ export interface ChatConfig {
   token: string;
   /** Giriş yapan kullanıcının ID'si */
   userId: string;
-  /** @internal Genellikle verilmez; host "dev" ile başlıyorsa develop, değilse production RMOS API URL'i kullanılır */
+  /**
+   * RMOS General API adresi. Verilmezse host "dev" ile başlıyorsa develop, değilse production
+   * URL'i kullanılır. Göreli bir yol da olabilir (ör. "/service"): istekler host uygulamanın
+   * kendi proxy'sinden geçer — API IP izniyle korunuyorsa tarayıcıdan doğrudan erişilemez.
+   */
   baseUrl?: string;
   /** @internal Genellikle verilmez; varsayılan Firebase config kullanılır */
   firebaseConfig?: FirebaseWebConfig;
