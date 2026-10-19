@@ -12,7 +12,7 @@ import { Avatar } from "./Avatar";
 import { ChatThread } from "./ChatThread";
 import { ConversationList } from "./ConversationList";
 
-export interface RmosChatProps extends Pick<ChatConfig, "token" | "userId"> {
+export interface RmosChatProps extends Pick<ChatConfig, "token" | "userId" | "baseUrl"> {
   /** true → buton sağ/sol altta sabit (floating) balon olur. */
   floating?: boolean;
   /** Floating konumu (varsayılan "bottom-right") */
@@ -44,15 +44,15 @@ export interface RmosChatProps extends Pick<ChatConfig, "token" | "userId"> {
  * <RmosChat token={token} userId="19" floating />
  * ```
  */
-export function RmosChat({ token, userId, ...ui }: RmosChatProps) {
+export function RmosChat({ token, userId, baseUrl, ...ui }: RmosChatProps) {
   return (
-    <ChatProvider token={token} userId={userId}>
+    <ChatProvider token={token} userId={userId} baseUrl={baseUrl}>
       <RmosChatInner {...ui} />
     </ChatProvider>
   );
 }
 
-type InnerProps = Omit<RmosChatProps, "token" | "userId">;
+type InnerProps = Omit<RmosChatProps, "token" | "userId" | "baseUrl">;
 
 /** Bu genişliğin altında kart tek panelli (liste → sohbet) çalışır. */
 const SPLIT_MIN_WIDTH = 640;
