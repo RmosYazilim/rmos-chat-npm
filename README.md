@@ -50,6 +50,7 @@ import { RmosChat } from "@rmosyazilim/chat-widget";
 |------|-----|-----------|----------|
 | `token` | `string` | — | RMOS oturum token'ı (zorunlu) |
 | `userId` | `string` | — | Kullanıcı ID (zorunlu) |
+| `baseUrl` | `string` | host'a göre | RMOS General API adresi. Verilmezse site `localhost` ya da `dev…` ile başlıyorsa `dev-generalapis.rmosweb.com`, aksi halde `generalapis.rmosweb.com`. Göreli yol da olabilir (ör. `"/service"`) — bkz. [API adresi](#api-adresi) |
 | `floating` | `boolean` | `false` | Sağ/sol altta sabit balon |
 | `position` | `"bottom-right" \| "bottom-left"` | `"bottom-right"` | Floating konumu |
 | `title` | `string` | `"Mesajlar"` | Kart başlığı |
@@ -58,6 +59,16 @@ import { RmosChat } from "@rmosyazilim/chat-widget";
 | `defaultOpen` | `boolean` | `false` | Açık başlasın mı |
 | `className` | `string` | — | Buton CSS sınıfı |
 | `style` | `CSSProperties` | — | Sarmalayıcı stili |
+
+## API adresi
+
+REST çağrıları (Firebase token, kişi listesi) `baseUrl` adresine gider. `generalapis.rmosweb.com` IP izniyle korunduğu için tarayıcıdan doğrudan çağrı, izinli olmayan IP'lerde **403** alır. Host uygulamanın bu adrese giden bir proxy'si varsa `baseUrl` olarak onun yolunu verin:
+
+```tsx
+<RmosChat token={token} userId={userId} baseUrl="/service" />
+```
+
+İstekler `"/service/api/..."` olarak host uygulamaya gider; proxy kendi oturumundaki token ile API'ye iletir. Mesajlar Firestore üzerinden doğrudan Firebase'e gittiği için bundan etkilenmez.
 
 ---
 
